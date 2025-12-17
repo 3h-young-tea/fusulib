@@ -13,8 +13,8 @@ original code: https://www.luogu.com.cn/paste/softmqwh
 recode by young_tea https://codeforces.com/profile/young_tea
 */
 namespace fusu{
-std::mt19937_64 hack(0x20000430l);
-void	set_seed(ull x=0x20000430l){
+std::mt19937_64 hack(0x3b800001l);
+void	set_seed(ull x=0x3b800001l){
 	hack.seed(x);
 }
 void	is_valid(bool x){

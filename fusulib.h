@@ -19,7 +19,7 @@ void	set_seed(ull x=0x20000430l){
 }
 void	is_valid(bool x){
 	if(x==0)
-		exit(777);
+		std::exit(777);
 }
 template<class t>
 auto	next_0(t x)->t{

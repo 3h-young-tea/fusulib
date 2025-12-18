@@ -1,6 +1,6 @@
 fusulib api 详解
 
-[https://github.com/3h-young-tea/fusulib/edit/main/README.md](https://github.com/3h-young-tea/fusulib/edit/main/README.md)
+[https://github.com/3h-young-tea/fusulib/blob/main/README.md](https://github.com/3h-young-tea/fusulib/blob/main/README.md)
 
 更加现代的算法竞赛题目数据生成器, 使用 c++20 编写.
 

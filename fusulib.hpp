@@ -1,3 +1,5 @@
+#pragma once
+
 #include <bits/stdc++.h>
 
 using std::complex_literals::operator""i;
@@ -6,9 +8,6 @@ using std::string_literals::operator""s;
 #ifdef	_WIN32
 #error	"they are not like us"
 #endif
-
-#ifndef	fusu_hpp
-#define	fusu_hpp
 
 /*
 original by:	一扶苏一女士 https://codeforces.com/profile/_Fusu
@@ -138,5 +137,3 @@ void	gen_ans(const std::string &prob, long task, const std::string &stdx) {
 	std::println(std::cerr, "gened ans: {}.ans", file);
 }
 }
-
-#endif

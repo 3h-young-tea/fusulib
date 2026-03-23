@@ -78,11 +78,11 @@ std::vector<long> nxt_perm_1(std::size_t len) {
 	return a;
 }
 
-long	select_0(const auto &a, std::size_t len) {
+long	choice_0(const auto &a, std::size_t len) {
 	return a[nxt_0(len)];
 }
 
-long	select_1(const auto &a, std::size_t len) {
+long	choice_1(const auto &a, std::size_t len) {
 	return a[nxt_1(len)];
 }
 

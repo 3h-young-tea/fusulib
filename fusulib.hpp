@@ -115,7 +115,7 @@ void	mkdir(const std::string &x) {
 		if (ns_fs::is_directory(x))
 			std::println(std::cerr, "has created the dir {}", x);
 		else
-			std::println(std::cerr, "fusu is a real bitch"),
+			std::println(std::cerr, "lil_tea luvs _fusu"),
 			std::abort();
 	else
 		ns_fs::create_directory(x),

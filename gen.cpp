@@ -36,20 +36,15 @@ void	make_data(long task) {
 		std::println(fs::fout, "{} {}", x, y);
 	}
 
-	std::vector<long> a(vtxes);
-
-	for (long x : std::views::iota(0, vtxes))
-		a[x] = x + 1;
-
-	std::shuffle(a.begin(), a.end(), fs::hack);
+	auto a = fs::nxt_perm_0(vtxes);
 
 	for (long x : std::views::iota(0, vtxes))
 		std::print(fs::fout, "{}{}", a[x], " \n"s[x == vtxes - 1]);
 
-	std::shuffle(a.begin(), a.end(), fs::hack);
+	auto b = fs::nxt_perm_0(vtxes);
 
 	for (long x : std::views::iota(0, vtxes))
-		std::print(fs::fout, "{}{}", a[x], " \n"s[x == vtxes - 1]);
+		std::print(fs::fout, "{}{}", b[x], " \n"s[x == vtxes - 1]);
 
 	while (queries--) {
 		long op = fs::nxt_x(1, 3);

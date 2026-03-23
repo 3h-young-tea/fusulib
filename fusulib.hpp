@@ -1,143 +1,99 @@
 #include <bits/stdc++.h>
+#include "fusulib.hpp"
 
 using std::complex_literals::operator""i;
 using std::string_literals::operator""s;
 
-#ifdef	_WIN32
-#error	"they are not like us"
-#endif
+constexpr long k_inf = 0x3f3f3f3f3f3f3f3fl;
+constexpr long k_mod = 0x3b800001l;
 
-#ifndef	fusu_hpp
-#define	fusu_hpp
+auto	nxt(void) {
+	long x;
+	std::cin >> x;
+	return x;
+}
 
 /*
-original by:	一扶苏一女士 https://codeforces.com/profile/_Fusu
-original blog:	https://www.luogu.com.cn/article/exdkjvcu
-original code:	https://www.luogu.com.cn/paste/softmqwh
-recode by:	lil_tea https://codeforces.com/profile/fire_at_will
-coding style:	lil_tea c++ style guide https://www.cnblogs.com/young-tea/p/19740914
+prob link:	https://vjudge.net/problem/QOJ-10148
+start think:	
+term think:	
+start code:	
+term code:	
 */
 
-namespace fs {
-std::mt19937_64 hack(998244353);
+void	make_data(long task) {
+	long vtxes = 1e5, edges = 2e5, queries = 1e5;
+	
+	std::println(fs::fout, "{} 1", task);
+	std::println(fs::fout, "{} {} {}", vtxes, edges, queries);
 
-void	set_seed(unsigned long x = 998244353) {
-	hack.seed(x);
+	while (edges--) {
+		auto [x, y] = fs::nxt_tied(1, vtxes);
+
+		while (x == y)
+			std::tie(x, y) = fs::nxt_tied(1, vtxes);
+
+		std::println(fs::fout, "{} {}", x, y);
+	}
+
+	auto a = fs::nxt_perm_0(vtxes);
+
+	for (long x : std::views::iota(0, vtxes))
+		std::print(fs::fout, "{}{}", a[x], " \n"s[x == vtxes - 1]);
+
+	auto b = fs::nxt_perm_0(vtxes);
+
+	for (long x : std::views::iota(0, vtxes))
+		std::print(fs::fout, "{}{}", b[x], " \n"s[x == vtxes - 1]);
+
+	while (queries--) {
+		long op = fs::nxt_x(1, 3);
+
+		if (op == 1 || op == 2) {
+			auto [x, y] = fs::nxt_tied(1, vtxes);
+
+			while (x == y)
+				std::tie(x, y) = fs::nxt_tied(1, vtxes);
+
+			std::println(fs::fout, "{} {} {}", op, x, y);
+		} else if (op == 3) {
+			long x = fs::nxt_x(1, vtxes);
+			auto [f, g] = fs::nxt_tied(1, vtxes);
+			std::println(fs::fout, "{} {} {} {}", op, x, f, g);
+		} else {
+			std::println(std::cerr, "i`ve aked wf!");
+		}
+	}
 }
 
-long	nxt_0(long x) {
-	return hack() % x;
+void	solve(void) {
+	std::string prob = "recall"s;
+	long cases_tot = 25;
+	std::string path = "./"s + prob + "/"s;
+
+	fs::set_seed(std::chrono::system_clock::now().time_since_epoch().count());
+	fs::mkdir(path);
+
+	for (long t : std::views::iota(1, cases_tot + 1)) {
+		fs::gen_in(path + prob, t, make_data);
+		fs::gen_ans(path + prob, t, "std.x"s);
+	}
 }
 
-long	nxt_1(long x) {
-	return hack() % x + 1;
+signed	main(void) {
+//	std::freopen(".in", "r", stdin);
+//	std::freopen(".out", "w", stdout);
+	std::ios::sync_with_stdio(0);
+	std::cin.tie(nullptr);
+	std::cout.tie(nullptr);
+
+	long _ = 1;
+
+//	_ = nxt();
+
+	while (_--)
+		solve();
+
+	std::cout.flush();
+	return EXIT_SUCCESS;
 }
-
-long	nxt_x(long low, long hgh) {
-	return low + hack() % (hgh - low + 1);
-}
-
-std::tuple<long, long> nxt_tied(long low, long hgh) {
-	long x = nxt_x(low, hgh), y = nxt_x(low, hgh);
-
-	if (y < x)
-		std::swap(x, y);
-
-	return std::make_tuple(x, y);
-}
-
-std::unique_ptr<long[]> nxt_arr_0(std::size_t len, long low, long hgh) {
-	auto a = std::make_unique<long[]>(len);
-	std::generate(&a[0], &a[0] + len, [&](void) {
-		return nxt_x(low, hgh);
-	});
-	return a;
-}
-
-std::unique_ptr<long[]> nxt_arr_1(std::size_t len, long low, long hgh) {
-	auto a = std::make_unique<long[]>(len + 1);
-	a[0] = 0;
-	std::generate(&a[1], &a[1] + len, [&](void) {
-		return nxt_x(low, hgh);
-	});
-	return a;
-}
-
-std::vector<long> nxt_vec_0(std::size_t len, long low, long hgh) {
-	std::vector<long> a(len);
-	std::generate(a.begin(), a.end(), [&](void) {
-		return nxt_x(low, hgh);
-	});
-	return a;
-}
-
-std::vector<long> nxt_vec_1(std::size_t len, long low, long hgh) {
-	std::vector<long> a(len + 1);
-	std::generate(a.begin() + 1, a.end(), [&](void) {
-		return nxt_x(low, hgh);
-	});
-	return a;
-}
-
-long	select_0(const auto &a, std::size_t len) {
-	return a[nxt_0(len)];
-}
-
-long	select_1(const auto &a, std::size_t len) {
-	return a[nxt_1(len)];
-}
-
-char	nxt_letter(void) {
-	return 'a' + nxt_0('z' - 'a' + 1);
-}
-
-char	nxt_Letter(void) {
-	return 'A' + nxt_0('Z' - 'A' + 1);
-}
-
-std::string nxt_str(std::size_t len) {
-	std::string s;
-	for (std::size_t x : std::views::iota(0uz, len))
-		s += nxt_letter();
-	return s;
-}
-
-std::string nxt_Str(std::size_t len) {
-	std::string s;
-	for (std::size_t x : std::views::iota(0uz, len))
-		s += nxt_Letter();
-	return s;
-}
-
-void	mkdir(const std::string &x) {
-	namespace ns_fs = std::filesystem;
-	if (ns_fs::exists(x))
-		if (ns_fs::is_directory(x))
-			std::println(std::cerr, "has created the dir {}", x);
-		else
-			std::println(std::cerr, "lil_tea luvs _fusu"),
-			std::abort();
-	else
-		ns_fs::create_directory(x),
-		std::println(std::cerr, "created dir: {}", x);
-}
-
-std::ofstream fout;
-
-void	gen_in(const std::string &prob, long task, auto &&func) {
-	std::string file = prob + std::to_string(task);
-	fout.open(file + ".in"s);
-	func(task);
-	fout.close();
-	std::println(std::cerr, "gened in: {}.in", file);
-}
-
-void	gen_ans(const std::string &prob, long task, const std::string &stdx) {
-	std::string file = prob + std::to_string(task);
-	std::string cmd = "./"s + stdx + " < "s + file + ".in > "s + file + ".ans"s;
-	std::system(cmd.c_str());
-	std::println(std::cerr, "gened ans: {}.ans", file);
-}
-}
-
-#endif

@@ -77,12 +77,12 @@ std::vector<long> nxt_perm_1(std::size_t len) {
 	return a;
 }
 
-long	choice_0(const auto &a, std::size_t len) {
-	return a[nxt_0(len)];
+long	choice_0(const std::vector<long> &a) {
+	return a[nxt_0(a.size())];
 }
 
-long	choice_1(const auto &a, std::size_t len) {
-	return a[nxt_1(len)];
+long	choice_1(const std::vector<long> &a) {
+	return a[nxt_1(a.size() - 1)];
 }
 
 char	nxt_letter(void) {

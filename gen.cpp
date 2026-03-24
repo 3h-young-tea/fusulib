@@ -36,12 +36,12 @@ void	make_data(long task) {
 		std::println(fs::fout, "{} {}", x, y);
 	}
 
-	auto a = fs::nxt_perm_0(vtxes);
+	auto a = fs::nxt_perm(vtxes);
 
 	for (long x : std::views::iota(0, vtxes))
 		std::print(fs::fout, "{}{}", a[x], " \n"s[x == vtxes - 1]);
 
-	auto b = fs::nxt_perm_0(vtxes);
+	auto b = fs::nxt_perm(vtxes);
 
 	for (long x : std::views::iota(0, vtxes))
 		std::print(fs::fout, "{}{}", b[x], " \n"s[x == vtxes - 1]);

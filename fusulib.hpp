@@ -45,7 +45,7 @@ std::tuple<long, long> nxt_tied(long low, long hgh) {
 	return std::make_tuple(x, y);
 }
 
-std::vector<long> nxt_vec_0(std::size_t len, long low, long hgh) {
+std::vector<long> nxt_vec(std::size_t len, long low, long hgh) {
 	std::vector<long> a(len);
 	std::generate(a.begin(), a.end(), [&](void) {
 		return nxt_x(low, hgh);
@@ -53,36 +53,16 @@ std::vector<long> nxt_vec_0(std::size_t len, long low, long hgh) {
 	return a;
 }
 
-std::vector<long> nxt_vec_1(std::size_t len, long low, long hgh) {
-	std::vector<long> a(len + 1);
-	std::generate(a.begin() + 1, a.end(), [&](void) {
-		return nxt_x(low, hgh);
-	});
-	return a;
-}
-
-std::vector<long> nxt_perm_0(std::size_t len) {
+std::vector<long> nxt_perm(std::size_t len) {
 	std::vector<long> a(len);
 	for (std::size_t x : std::views::iota(0uz, len))
 		a[x] = x + 1;
-	std::shuffle(a.begin(), a.end(), hack);
+	std::ranges::shuffle(a, hack);
 	return a;
 }
 
-std::vector<long> nxt_perm_1(std::size_t len) {
-	std::vector<long> a(len + 1);
-	for (std::size_t x : std::views::iota(1uz, len + 1))
-		a[x] = x;
-	std::shuffle(a.begin() + 1, a.end(), hack);
-	return a;
-}
-
-long	choice_0(const std::vector<long> &a) {
+long	choice(const std::vector<long> &a) {
 	return a[nxt_0(a.size())];
-}
-
-long	choice_1(const std::vector<long> &a) {
-	return a[nxt_1(a.size() - 1)];
 }
 
 char	nxt_letter(void) {

@@ -13,7 +13,7 @@ using std::string_literals::operator""s;
 original by:	一扶苏一女士 https://codeforces.com/profile/_Fusu
 original blog:	https://www.luogu.com.cn/article/exdkjvcu
 original code:	https://www.luogu.com.cn/paste/softmqwh
-recode by:	lil_tea https://codeforces.com/profile/fire_at_will
+recode by:	lil_tea https://codeforces.com/profile/lil_tea
 coding style:	lil_tea c++ style guide https://www.cnblogs.com/young-tea/p/19740914
 */
 
